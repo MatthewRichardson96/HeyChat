@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
-import { ChatInput } from './components/ChatInput'
+import { Chat } from './components/Chat'
+
 function App() {
   const [count, setCount] = useState(0)
 
@@ -20,7 +21,7 @@ function App() {
         <p className="mt-4 text-sm text-gray-500">
           Edit <code className="font-mono bg-gray-100 p-1 rounded">src/App.tsx</code> and save to test HMR
         </p>
-        <ChatInput />
+        <Chat />
       </div>
     </div>
   )

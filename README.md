@@ -6,7 +6,7 @@ HeyChat is a full-stack AI-powered chat application that allows users to interac
 - Real-time chat interface with AI (OpenAI GPT-3.5-turbo)
 - Modern, responsive UI built with React, TypeScript, and Tailwind CSS
 - Backend server with Express.js for secure API key handling
-- Easy local development with Vite
+- Easy local development and deployment with Docker Compose
 - Simple, extensible code structure
 
 ## Tech Stack
@@ -18,8 +18,7 @@ HeyChat is a full-stack AI-powered chat application that allows users to interac
 ## Getting Started
 
 ### Prerequisites
-- Node.js (v18+ recommended)
-- npm or yarn
+- [Docker](https://www.docker.com/get-started) and [Docker Compose](https://docs.docker.com/compose/)
 - An OpenAI API key ([get one here](https://platform.openai.com/account/api-keys))
 
 ### 1. Clone the repository
@@ -28,33 +27,24 @@ git clone <your-repo-url>
 cd HeyChat
 ```
 
-### 2. Setup the Backend
-```bash
-cd server
-cp example.env .env # Add your OpenAI API key to .env
-npm install # or yarn install
-```
-Edit `.env` and set your OpenAI API key:
+### 2. Set up environment variables
+Create a `.env` file in the project root (same directory as `docker-compose.yml`) and add your OpenAI API key:
 ```
 OPENAI_API_KEY=your_openai_api_key
 ```
 
-Start the backend server:
+### 3. Build and run with Docker Compose
 ```bash
-npm start # or yarn start
+docker-compose up --build
 ```
-The backend will run on `http://localhost:3000` by default.
+- The frontend will be available at [http://localhost:5173](http://localhost:5173)
+- The backend API will be available at [http://localhost:3000](http://localhost:3000)
 
-### 3. Setup the Frontend
+### 4. Stopping the app
+Press `Ctrl+C` in your terminal, then run:
 ```bash
-cd .. # back to project root
-npm install # or yarn install
+docker-compose down
 ```
-Start the frontend development server:
-```bash
-npm run dev # or yarn dev
-```
-The frontend will run on `http://localhost:5173` by default.
 
 ## Usage
 - Open [http://localhost:5173](http://localhost:5173) in your browser.
@@ -64,17 +54,29 @@ The frontend will run on `http://localhost:5173` by default.
 ## Project Structure
 ```
 HeyChat/
-  server/           # Express backend (API proxy to OpenAI)
-  src/              # React frontend source code
-    components/     # UI components (atoms, molecules, organisms)
+  backend/            # Express backend (API proxy to OpenAI)
+    index.js
+    package.json
     ...
-  public/           # Static assets
+  frontend/           # React frontend source code
+    src/              # All React code, components, etc.
+    public/           # Static assets
+    package.json
+    index.html
+    ...
+  docker-compose.yml  # Docker Compose config
+  .env                # Environment variables (not committed)
+  README.md
   ...
 ```
 
 ## Testing
-- Frontend tests: `npm test` (uses Jest and React Testing Library)
-- Backend: Add your own tests as needed
+- **Frontend:**
+  - Enter the `frontend` folder: `cd frontend`
+  - Run tests: `npm test` (uses Jest and React Testing Library)
+- **Backend:**
+  - Enter the `backend` folder: `cd backend`
+  - Run tests: `npm test` (add your own tests as needed)
 
 ## Contributing
 Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.

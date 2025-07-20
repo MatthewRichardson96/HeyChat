@@ -7,7 +7,8 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-
+const apiKey = process.env.OPENAI_API_KEY;
+console.log("api key is: ", apiKey);
 
 app.use(cors({
 	origin: 'http://localhost:5173',
@@ -26,6 +27,7 @@ app.get("/", (req, res) => {
 app.post("/api/chat", async (req, res) => {
 	const userMessage = req.body.message;
 	const apiKey = process.env.OPENAI_API_KEY;
+	
 	if (!apiKey) {
 		return res.status(500).json({ error: "API key is not set." });
 	}

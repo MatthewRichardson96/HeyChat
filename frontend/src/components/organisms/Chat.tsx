@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { Input } from "../atoms/Input";
 import { ChatMessage } from "../molecules/ChatMessage";

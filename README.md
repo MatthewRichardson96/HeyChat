@@ -35,7 +35,7 @@ OPENAI_API_KEY=your_openai_api_key
 
 ### 3. Build and run with Docker Compose
 ```bash
-docker-compose up --build
+npm run up
 ```
 - The frontend will be available at [http://localhost:5173](http://localhost:5173)
 - The backend API will be available at [http://localhost:3000](http://localhost:3000)
@@ -43,7 +43,7 @@ docker-compose up --build
 ### 4. Stopping the app
 Press `Ctrl+C` in your terminal, then run:
 ```bash
-docker-compose down
+npm run down
 ```
 
 ## Usage
@@ -68,6 +68,17 @@ HeyChat/
   .env                # Environment variables (not committed)
   README.md
   ...
+```
+
+## Architecture
+```mermaid
+graph TD
+  A[User's Browser] -->|HTTP| B(Frontend - React/Vite)
+  B -->|API Request| C(Backend - Express)
+  C -->|OpenAI API| D(OpenAI GPT-3.5)
+  D -->|AI Response| C
+  C -->|Response| B
+  B -->|Response| A
 ```
 
 ## Testing

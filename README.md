@@ -1,54 +1,83 @@
-# React + TypeScript + Vite
+# HeyChat
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+HeyChat is a full-stack AI-powered chat application that allows users to interact with OpenAI's GPT-3.5-turbo model in real time. The project features a modern React + TypeScript frontend and an Express.js backend that securely proxies requests to the OpenAI API.
 
-Currently, two official plugins are available:
+## Features
+- Real-time chat interface with AI (OpenAI GPT-3.5-turbo)
+- Modern, responsive UI built with React, TypeScript, and Tailwind CSS
+- Backend server with Express.js for secure API key handling
+- Easy local development with Vite
+- Simple, extensible code structure
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
+- **Frontend:** React, TypeScript, Vite, Tailwind CSS
+- **Backend:** Node.js, Express.js
+- **AI:** OpenAI GPT-3.5-turbo
+- **Other:** Axios, Jest (testing), ESLint (linting)
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
+- Node.js (v18+ recommended)
+- npm or yarn
+- An OpenAI API key ([get one here](https://platform.openai.com/account/api-keys))
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### 1. Clone the repository
+```bash
+git clone <your-repo-url>
+cd HeyChat
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+### 2. Setup the Backend
+```bash
+cd server
+cp example.env .env # Add your OpenAI API key to .env
+npm install # or yarn install
 ```
+Edit `.env` and set your OpenAI API key:
+```
+OPENAI_API_KEY=your_openai_api_key
+```
+
+Start the backend server:
+```bash
+npm start # or yarn start
+```
+The backend will run on `http://localhost:3000` by default.
+
+### 3. Setup the Frontend
+```bash
+cd .. # back to project root
+npm install # or yarn install
+```
+Start the frontend development server:
+```bash
+npm run dev # or yarn dev
+```
+The frontend will run on `http://localhost:5173` by default.
+
+## Usage
+- Open [http://localhost:5173](http://localhost:5173) in your browser.
+- Type a message in the input box and press "Send".
+- The AI will respond in the chat window.
+
+## Project Structure
+```
+HeyChat/
+  server/           # Express backend (API proxy to OpenAI)
+  src/              # React frontend source code
+    components/     # UI components (atoms, molecules, organisms)
+    ...
+  public/           # Static assets
+  ...
+```
+
+## Testing
+- Frontend tests: `npm test` (uses Jest and React Testing Library)
+- Backend: Add your own tests as needed
+
+## Contributing
+Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
+
+## License
+[MIT](LICENSE)

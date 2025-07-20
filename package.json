@@ -1,8 +1,0 @@
-{
-  "name": "heychat-root",
-  "private": true,
-  "scripts": {
-    "up": "docker-compose up --build",
-    "down": "docker-compose down"
-  }
-}

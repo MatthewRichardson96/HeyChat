@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Input } from "../atoms/Input";
 import { ChatMessage } from "../molecules/ChatMessage";
-
 interface Message {
     id: string;
     text: string;
@@ -26,10 +25,10 @@ export const Chat = () => {
         setMessages(prev => [...prev, newMessage]);
 
         try { 
-          const response = await axios.post('http://localhost:3000/api/chat', {
-            message: messageText,
-          });
-
+          const response = await axios.post('/api/chat', {message: messageText});
+          // const response = await axios.post('http://localhost:3000/api/chat', {
+          //   message: messageText,
+          // });
           console.log("Response from AI:", response.data);
 
           const aiMessage: Message = { 
